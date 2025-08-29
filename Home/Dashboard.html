@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce Dashboard</title>
+    <style>
+      
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f7fb;
+            color: #232323;
+        }
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 260px;
+            background: #fff;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+            padding: 32px 0 0 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffc300;
+            margin-left: 32px;
+            margin-bottom: 32px;
+            letter-spacing: 2px;
+        }
+        .sidebar nav {
+            flex: 1;
+        }
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 32px;
+            color: #232323;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 8px 0 0 8px;
+            margin-bottom: 4px;
+            transition: background 0.2s;
+        }
+        .sidebar nav a.active, .sidebar nav a:hover {
+            background: #f6f7fb;
+            color: #ffc300;
+        }
+        .sidebar .logout {
+            margin: 32px 32px 0 32px;
+            color: #888;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .main-content {
+            flex: 1;
+            padding: 32px 40px;
+        }
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dashboard-header .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .dashboard-header .user-info {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .dashboard-header .user-info .role {
+            font-size: 1rem;
+            color: #888;
+        }
+        .dashboard-header .user-info img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #eee;
+        }
+        .cards-row {
+            display: flex;
+            gap: 32px;
+            margin: 32px 0 24px 0;
+        }
+        .dashboard-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 28px 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+        .dashboard-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+        .dashboard-card .card-title {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .dashboard-card .card-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .dashboard-card .card-desc {
+            font-size: 1rem;
+            color: #888;
+        }
+        .dashboard-card .progress {
+            position: absolute;
+            top: 28px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+        }
+        .section {
+            margin-bottom: 32px;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .recent-orders, .recent-updates, .sales-analytics {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            padding: 24px 32px;
+            margin-bottom: 24px;
+        }
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .orders-table th, .orders-table td {
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 1rem;
+        }
+        .orders-table th {
+            color: #888;
+        }
+        .orders-table td.status {
+            color: #ff4c4c;
+            font-weight: 600;
+        }
+        .updates-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .updates-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .updates-list img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .analytics-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .analytics-list li {
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+        .analytics-list .analytics-title {
+            font-weight: 600;
+            color: #232323;
+        }
+        .analytics-list .analytics-desc {
+            color: #888;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 900px) {
+            .cards-row {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .main-content {
+                padding: 18px 8px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="logo"><span style="color:#ffc300;">SHOPEASY</span></div>
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Customers</a>
+            <a href="#">Analytics</a>
+            <a href="#">Messages <span style="background:#ff4c4c;color:#fff;border-radius:50%;padding:2px 8px;font-size:0.9rem;margin-left:6px;">14</span></a>
+            <a href="#">Products</a>
+            <a href="#">Reports</a>
+            <a href="#">Settings</a>
+            <a href="#">Add Product</a>
+        </nav>
+        <div class="logout">Logout</div>
+    </aside>
+    <main class="main-content">
+        <div class="dashboard-header">
+            <div class="title">Dashboard</div>
+            <div class="user-info">
+                <span style="font-size:1.2rem;cursor:pointer;">🌞</span>
+                <div>
+                    <div style="font-weight:600;">Babar</div>
+                    <div class="role">Admin</div>
+                </div>
+                <img src="/client-img.png" alt="User">
+            </div>
+        </div>
+        <div class="cards-row">
+            <div class="dashboard-card">
+                <span class="icon" style="color:#ff4c4c;">&#8679;</span>
+                <div class="card-title">Total Sales</div>
+                <div class="card-value" id="salesValue">$25,024</div>
+                <div class="card-desc">Last 24 Hours</div>
+                <canvas class="progress" id="progress1" width="48" height="48"></canvas>
+            </div>
+            <div class="dashboard-card">
+                <span class="icon" style="color:#ff7c4c;">&#128722;</span>
+                <div class="card-title">Total Sales</div>
+                <div class="card-value">$25,024</div>
+                <div class="card-desc">Last 24 Hours</div>
+                <canvas class="progress" id="progress2" width="48" height="48"></canvas>
+            </div>
+            <div class="dashboard-card">
+                <span class="icon" style="color:#4cff7c;">&#128200;</span>
+                <div class="card-title">Total Sales</div>
+                <div class="card-value">$25,024</div>
+                <div class="card-desc">Last 24 Hours</div>
+                <canvas class="progress" id="progress3" width="48" height="48"></canvas>
+            </div>
+        </div>
+        <div class="section recent-orders">
+            <div class="section-title">Recent Orders</div>
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Number</th>
+                        <th>Payments</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mini USB</td>
+                        <td>4563</td>
+                        <td>Due</td>
+                        <td class="status">Pending</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Mini USB</td>
+                        <td>4563</td>
+                        <td>Due</td>
+                        <td class="status">Pending</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>Mini USB</td>
+                        <td>4563</td>
+                        <td>Due</td>
+                        <td class="status">Pending</td>
+                        <td><a href="#">Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="display:flex;gap:32px;">
+            <div class="section recent-updates" style="flex:1;">
+                <div class="section-title">Recent Update</div>
+                <ul class="updates-list">
+                    <li>
+                        <img src="/client-img.png" alt="Babar">
+                        <div>
+                            <strong>Babar</strong> Received his order of USB
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/client-img.png" alt="Ali">
+                        <div>
+                            <strong>Ali</strong> Received his order of USB
+                        </div>
+                    </li>
+                    <li>
+                        <img src="/client-img.png" alt="Ramzan">
+                        <div>
+                            <strong>Ramzan</strong> Received his order of USB
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="section sales-analytics" style="flex:1;">
+                <div class="section-title">Sales Analytics</div>
+                <ul class="analytics-list">
+                    <li>
+                        <div class="analytics-title">Onion Orders</div>
+                        <div class="analytics-desc">Last seen 2 Hours <span style="color:#ffc300;">-17%</span> <span style="color:#232323;">3849</span></div>
+                    </li>
+                    <li>
+                        <div class="analytics-title">Onion Orders</div>
+                        <div class="analytics-desc">Last seen 2 Hours <span style="color:#ffc300;">-17%</span> <span style="color:#232323;">3849</span></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</div>
+<script>
+function drawProgress(canvasId, percent, color) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;

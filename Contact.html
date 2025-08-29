@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact page</title>
+    <style>
+      *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'outfit';
+    background: linear-gradient(#003568,#FFC300)
+}
+.Contact-Container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.contact-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.contact-left-title h2{
+    font-weight: 600;
+    color: #FFC300;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+.contact-left-title hr{
+    border: none;
+    width: 120px;
+    height: 5px;
+    background-color: #003568;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.contact-inputs{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    color: #003568;
+    border-radius: 50px;
+}
+.contact-left textarea{
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+.contact-inputs:focus{
+    border: 2px solid rgb(6, 6, 102);
+}
+.contact-inputs::placeholder{
+    color:  #003568;
+}
+.contact-left button{
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #ffff;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(270deg,#003568);
+    cursor: pointer;
+}
+.contact-left button img{
+    height: 15px;
+}
+.contact-right img{
+    width: 200px;
+}
+@media (max-width:800px) {
+    .contact-inputs{
+        width: 80vw;
+    }
+    .contact-right{
+        display: none;
+    }
+}
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="Contact-Container">
+        ><form action=""class="contact-left">
+<div class="contact-left-title">
+<h2>Get in touch with us</h2>
+<hr>
+</div>
+<input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+<input type="email" name="email" placeholder="Your email" class="contact-inputs" required>
+<textarea name="massage" placeholder="Your massage" class="contact-inputs" required></textarea>
+<button type="submit"> submit <img src="/Arrow.webp" alt=""></button>
+        </form>
+<div class="contact-right">
+    <img src="/download (1).webp" alt="">
+
+</div>
+    </div>
+    
+</body>
+</html>

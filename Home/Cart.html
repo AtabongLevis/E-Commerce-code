@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEasy</title>
+    <style>
+        
+        body {
+            font-family: sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        header {
+            background-color: #0056b3;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-icon {
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 2rem;
+        }
+        .product-card {
+            background-color: #003566;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .product-info h3 {
+            margin: 0 0 5px;
+            font-size: 1.1rem;
+        }
+        .product-info p {
+            margin: 0 0 10px;
+            color: white;
+            font-weight: bold;
+        }
+        .add-to-cart {
+            background-color: #ffc300;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart:hover {
+            background-color: #ffc300;
+        }
+
+        
+        .cart-modal {
+            display: none; 
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close-btn:hover {
+            color: white;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .cart-item-controls button {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>ShopEasy</h2>
+        <div class="cart-icon" id="cart-icon">🛒</div>
+    </header>
+
+    <div class="products-container" id="products">
+        <div class="product-card" data-id="1" data-name="slide" data-price="15">
+            <img src="/AAHM6990.JPG" alt="slide">
+            <div class="product-info">
+                <h3>slide</h3>
+                <p>$15.00</p>
+
+
+<button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="2" data-name="loffer" data-price="30">
+            <img src="/CVBG4741.JPG" alt="loffer">
+            <div class="product-info">
+                <h3>loffer</h3>
+                <p>$30.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="3" data-name="roomper" data-price="10">
+            <img src="/EEVD1624.JPG" alt="roomper">
+            <div class="product-info">
+                <h3>roomper</h3>
+                <p>$10.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="4" data-name="Bone Straight" data-price="70">
+            <img src="/FDUR9187.JPG" alt="Bone straight">
+            <div class="product-info">
+                <h3>Bone straight</h3>
+                <p>$70.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="5" data-name="Tiger loffer" data-price="20">
+            <img src="/HBIQ3378.JPG" alt="Tiger loffer">
+            <div class="product-info">
+                <h3>Tiger loffer</h3>
+                <p>$20.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="6" data-name="bag" data-price="7">
+            <img src="/IMG_E9507.JPG" alt="bag">
+            <div class="product-info">
+                <h3>bag</h3>
+                <p>$7.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="7" data-name="Nails accessories" data-price="50">
+            <img src="/TLIX5021.JPG" alt="Nails accessories">
+            <div class="product-info">
+                <h3>Nails accessories</h3>
+                <p>$50.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="8" data-name="Perfume" data-price="20">
+            <img src="/SWUN4447.JPG" alt="Perfume">
+            <div class="product-info">
+                <h3>Perfume</h3>
+                <p>$20.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="9" data-name="collagen soap" data-price="1">
+            <img src="/RFAN9874.JPG" alt="collagen soap">
+            <div class="product-info">
+                <h3>collagen soap</h3>
+                <p>$1.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="10" data-name="Men loffer" data-price="50">
+            <img src="/PTYK1523.JPG" alt="men loffer">
+            <div class="product-info">
+                <h3>men loffer</h3>
+                <p>$50.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="10" data-name="Ring light" data-price="7">
+            <img src="/IVZD2055.JPG" alt="Ring light">
+            <div class="product-info">
+                <h3>Ring light</h3>
+                <p>$7.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="11" data-name="Ladies bag" data-price="17">
+            <img src="/IMG_E9508.JPG" alt="ladies bag">
+            
+            <div class="product-info">
+                <h3>Ladies Bag</h3>
+                <p>$17.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product-card" data-id="12" data-name="tote bag" data-price="10">
+            <img src="/IMG_E0098.JPG" alt="tote bag">
+            <div class="product-info">
+                <h3>tote bag</h3>
+                <p>$10.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="13" data-name="Face cap" data-price="11">
+            <img src="/IMG_E9506.JPG" alt="Face cap">
+            <div class="product-info">
+                <h3>Face cap</h3>
+                <p>$11.00</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cart-modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2>Your Cart</h2>
+            <ul id="cart-items">
+                </ul>
+            <div class="cart-total">
+                Total: $<span id="total-price">0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsContainer = document.getElementById('products');
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total-price');
+
+            let cart = [];
+
+            // Function to add a product to the cart
+            function addToCart(productId, productName, productPrice) {
+                const existingItem = cart.find(item => item.id === productId);
+
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+                }
+                updateCartDisplay();
+            }
+
+            
+            function updateCartDisplay() {
+                cartItemsContainer.innerHTML = ''; 
+                let total = 0;
+
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    const cartItemEl = document.createElement('li');
+                    cartItemEl.classList.add('cart-item');
+                    cartItemEl.innerHTML = `
+                        <span>${item.name} ($${item.price.toFixed(2)})</span>
+                        <div class="cart-item-controls">
+                            <button class="decrement" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increment" data-id="${item.id}">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemEl);
+                });
+
+                totalElement.textContent = total.toFixed(2);
+            }
+
+            
+            productsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const productCard = e.target.closest('.product-card');
+                    const productId = productCard.dataset.id;
+                    const productName = productCard.dataset.name;
+                    const productPrice = parseFloat(productCard.dataset.price);
+                    addToCart(productId, productName, productPrice);
+                }
+            });
+
+            
+            cartItemsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.
+
+
+contains('increment')) {
+                    const productId = e.target.dataset.id;
+                    const item = cart.find(i => i.id === productId);
+                    if (item) {
+                        item.quantity++;
+                        updateCartDisplay();
+                    }
+                }
+                if (e.target.classList.contains('decrement')) {
+                    const productId = e.target.dataset.id;
+                    const item = cart.find(i => i.id === productId);
+                    if (item && item.quantity > 1) {
+                        item.quantity--;
+                    } else if (item && item.quantity === 1) {
+                        cart = cart.filter(i => i.id !== productId); 
+                    }
+                    updateCartDisplay();
+                }
+            });
+
+            
+            cartIcon.addEventListener('click', () => {
+                cartModal.style.display = 'flex';
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                cartModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

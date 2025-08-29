@@ -1,0 +1,9 @@
+function performSearch() {
+    let query = document.getElementById("searchBox").value;
+    if (query.trim() === "") {
+        alert("Please enter a product to search for!");
+    } else {
+        alert("Searching for: " + query);
+        // Later, this can redirect to search results page
+    }
+}
